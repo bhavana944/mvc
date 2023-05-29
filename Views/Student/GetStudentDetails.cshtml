@@ -1,0 +1,53 @@
+﻿@model IEnumerable<StudentDetails_MVC_.Models.StudentDetails>
+
+@{
+    ViewBag.Title = "GetStudentDetails";
+}
+
+<h2>GetStudentDetails</h2>
+<p>@Html.ActionLink("Add record", "AddStudentDetails")</p>
+@*<input type="button" name="button" class="btnAdd" value="Add"/>*@
+<table border="1">
+    <tr>
+        <th hidden>Id</th>
+        <th>StudentName</th>
+        <th>Gender</th>
+        <th>Standard</th>
+        <th>Section</th> 
+        <th>Hobbies</th>
+        <th>Subjects</th>
+        <th> Marks1</th>
+        <th>Marks2</th>
+        <th>Marks3</th>
+        <th>Total</th>
+        <th width="100">Action</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(e => item.StudentName)</td>
+            <td>@Html.DisplayFor(e => item.Gender)</td>
+            <td>@Html.DisplayFor(e => item.Standard)</td>
+            <td>@Html.DisplayFor(e => item.Section)</td>
+            <td>@Html.DisplayFor(e => item.Hobbies)</td>
+            <td>@Html.DisplayFor(e => item.Subjects)</td>
+            <td>@Html.DisplayFor(e => item.Marks1)</td>
+            <td>@Html.DisplayFor(e => item.Marks2)</td>
+            <td>@Html.DisplayFor(e => item.Marks3)</td>
+            <td>@Html.DisplayFor(e => item.Total)</td>
+            <td>
+                @Html.ActionLink("Edit", "EditStudentDetails", new { id = item.Id })
+                @Html.ActionLink("Delete", "DeleteStudentDetails", new { id = item.Id }, new { onClick = "return confirm('are  you sure want to delete?');" })
+
+                @*<input type="button" name="button" id="btnEdit" value="Edit" />*@
+                @*<input type="button" name="button" id="btnDelete" value="Delete" onclick="Delete()" />*@
+
+            </td>
+        </tr>
+
+    }
+
+
+
+
+</table>

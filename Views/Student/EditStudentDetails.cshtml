@@ -1,0 +1,106 @@
+﻿@model StudentDetails_MVC_.Models.StudentDetails
+
+@*@model IEnumerable<StudentDetails_MVC_.Models.StudentDetails>*@
+@*@using StudentDetails_MVC_.Models
+@model IEnumerable<StudentDetails_MVC_.Models.StudentDetails>*@
+
+@{
+    ViewBag.Title = "EditStudentDetails";
+   // var Subjects = ViewData["subjects"] as IEnumerable<SelectListItem>;
+    // var Subjects = (IEnumerable<subjects>)ViewData["Subject"];
+}
+
+<h2>EditStudentDetails</h2>
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>@Html.LabelFor(e => e.StudentName)</td>
+            <td>@Html.EditorFor(e => e.StudentName)</td>
+            <td>@Html.ValidationMessageFor(e => e.StudentName)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(e => e.Gender)</td>
+            <td>
+                @Html.RadioButtonFor(e => e.Gender, "Male")Male
+                @Html.RadioButtonFor(e => e.Gender, "FeMale")FeMale
+            </td>
+            <td>@Html.ValidationMessageFor(e => e.Gender)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(e => e.Standard)</td>
+            <td>
+                @Html.DropDownListFor(e => e.Standard, new List<SelectListItem>
+    ()
+           { new SelectListItem(){Text="...Select...",Value="",Selected=true},
+          new SelectListItem(){Text="5th",Value="5th"},
+          new SelectListItem(){Text="6th",Value="6th"},
+            new SelectListItem(){Text="7th",Value="7th"},
+             new SelectListItem(){Text="8th",Value="8th"},
+              new SelectListItem(){Text="9th",Value="9th"},
+            new SelectListItem(){Text="10th",Value="10th"}
+          })
+            </td>
+            <td>@Html.ValidationMessageFor(e => e.Standard)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(e => e.Section)</td>
+            <td>
+                @Html.DropDownListFor(e => e.Section, new List<SelectListItem>
+    ()
+           { new SelectListItem(){Text="...Select...",Value="",Selected=true},
+          new SelectListItem(){Text="Asection",Value="A"},
+            new SelectListItem(){Text="Bsection",Value="B"}
+          })
+            </td>
+            <td>@Html.ValidationMessageFor(e => e.Section)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(e => e.Hobbies)</td>
+            <td>
+                @Html.CheckBox("Drawing", ViewBag.Drawing as string)Drawing
+                @Html.CheckBox("Playing", ViewBag.Playing as string)Playing
+                @Html.CheckBox("Swimming", ViewBag.Swimming as string)Swimming
+                @Html.CheckBox("Cooking", ViewBag.Cooking as string)Cooking
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(e => e.Subjects)</td>
+            <td>
+                @Html.DropDownListFor(e => e.Subjects, new List<SelectListItem> @*(ViewData["subjects"] as IList<SelectListItem>)*@
+                { new SelectListItem(){Text="Telugu",Value="Telugu"},
+          new SelectListItem(){Text="English",Value="English"},
+            new SelectListItem(){Text="Maths",Value="Maths"},
+              new SelectListItem(){Text="Science",Value="Science"},
+                new SelectListItem(){Text="Social",Value="Social"},
+            new SelectListItem(){Text="Hindi",Value="Hindi"}
+          });
+            </td>
+            <td>@Html.ValidationMessageFor(e => e.Subjects)</td>
+            @*, ViewData["subjects"] as IEnumerable<SelectListItem>*@
+
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(e => e.Marks1)</td>
+            <td>@Html.EditorFor(e => e.Marks1)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(e => e.Marks2)</td>
+            <td>@Html.EditorFor(e => e.Marks2)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(e => e.Marks3)</td>
+            <td>@Html.EditorFor(e => e.Marks3)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(e => e.Total) </td>
+            <td> @Html.TextBoxFor(e => e.Total@*, new { @readonly = "readonly"}*@)</td>
+
+            @*@Html.EditorFor(e => e.Total, new { @readonly = "readonly" })*@
+        </tr>
+        <tr>
+            <td><input type="submit" value="Update" /></td>
+        </tr>
+        @Html.ActionLink("Back to list", "GetStudentDetails")
+    </table>
+} 

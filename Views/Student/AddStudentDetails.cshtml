@@ -1,0 +1,115 @@
+﻿@model StudentDetails_MVC_.Models.StudentDetails
+@{
+    ViewBag.Title = "AddStudentDetails";
+}
+<script src="~/Scripts/jquery-3.7.0.min.js"></script>
+
+<h2>AddStudentDetails</h2>
+@using (Html.BeginForm())
+{
+    <table border="0">
+
+        <tr>
+            <td>@Html.LabelFor(e => e.StudentName)</td>
+            <td>@Html.EditorFor(e => e.StudentName)</td>
+            <td>@Html.ValidationMessageFor(e => e.StudentName)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(e => e.Gender)</td>
+            <td>
+                @Html.RadioButtonFor(e => e.Gender, "Male")Male
+                @Html.RadioButtonFor(e => e.Gender, "FeMale")FeMale
+            </td>
+            <td>@Html.ValidationMessageFor(e => e.Gender)</td>
+        </tr>
+        <tr>
+
+            <td>@Html.LabelFor(e => e.Standard)</td>
+            <td>
+                @Html.DropDownListFor(e => e.Standard, new List<SelectListItem>
+    ()
+       { new SelectListItem(){Text="...Select...",Value="",Selected=true},
+       new SelectListItem(){Text="6th",Value="6th"},
+        new SelectListItem(){Text="7th",Value="7th"},
+         new SelectListItem(){Text="8th",Value="8th"},
+          new SelectListItem(){Text="9th",Value="9th"},
+         new SelectListItem(){Text="10th",Value="10th"}
+     })
+            </td>
+
+            <td>@Html.ValidationMessageFor(e => e.Standard) </td>
+
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(e => e.Section)</td>
+            <td>
+                @Html.DropDownListFor(e => e.Section, new List<SelectListItem>
+    ()
+          { new SelectListItem(){Text="...Select...",Value="",Selected=true},
+          new SelectListItem(){Text="Asection",Value="A"},
+            new SelectListItem(){Text="Bsection",Value="B"}
+          })
+            </td>
+            <td>@Html.ValidationMessageFor(e => e.Section)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(e => e.Hobbies)</td>
+
+            <td>
+                @Html.CheckBox("Drawing")Drawing
+                @Html.CheckBox("Playing")Playing
+                @Html.CheckBox("Swimming")Swimming
+                @Html.CheckBox("Cooking")Cooking
+            </td>
+            @*<td>@Html.ValidationMessageFor(e => e.Hobbies)</td>*@
+            @*  <td> @Html.ValidationSummary(true, "", new { @class = "text-danger" })</td>*@
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(e => e.Subjects)</td>
+            <td>
+                @Html.ListBoxFor(e => e.Subjects, new List<SelectListItem>
+    ()
+          { new SelectListItem(){Text="Telugu",Value="Telugu"},
+          new SelectListItem(){Text="English",Value="English"},
+            new SelectListItem(){Text="Maths",Value="Maths"},
+              new SelectListItem(){Text="Science",Value="Science"},
+                new SelectListItem(){Text="Social",Value="Social"},
+            new SelectListItem(){Text="Hindi",Value="Hindi"}
+          })
+            </td>
+            <td>@Html.ValidationMessageFor(e => e.Subjects)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(e => e.Marks1)</td>
+            <td>@Html.TextBoxFor(e => e.Marks1, new { @class = "marks", Value = "0", type = "number" }) </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(e => e.Marks2)</td>
+            <td>@Html.TextBoxFor(e => e.Marks2, new { @class = "marks", Value = "0", type = "number" })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(e => e.Marks3)</td>
+            <td>@Html.TextBoxFor(e => e.Marks3, new { @class = "marks", Value = "0", type = "number" })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(e => e.Total) </td>
+            <td> @Html.TextBoxFor(e => e.Total, new { @readonly = "readonly", Value = "0" }) </td>
+
+        </tr>
+        <tr>
+            <td><input type="submit" value="Save" /></td>
+        </tr>
+        @Html.ActionLink("Back to list", "GetStudentDetails")
+
+    </table>
+}
+<script>
+
+    $(".marks").keyup(function () {
+        var Marks1 = document.getElementById("Marks1").value,
+            Marks2 = document.getElementById("Marks2").value,
+            Marks3 = document.getElementById("Marks3").value;
+        $("#Total").val( (Marks1 == "" ? 0 : parseInt(Marks1)) + (Marks2 == "" ? 0 : parseInt(Marks2)) + (Marks3 == "" ? 0 : parseInt(Marks3)));
+    });
+</script>
+
